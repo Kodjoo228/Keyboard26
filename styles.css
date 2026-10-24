@@ -80,18 +80,31 @@ header{
 }
 
 .white{
-    width:55px;
-    height:340px;
+    width:65px;
+
+    height:420px;
+
     background:white;
-    border:1px solid #333;
+
+    border:1px solid #222;
+
     color:black;
+
     display:flex;
+
     justify-content:center;
+
     align-items:flex-end;
+
+    padding-bottom:12px;
+
     font-weight:bold;
-    font-size:15px;
-    padding-bottom:10px;
+
+    font-size:18px;
+
     box-sizing:border-box;
+
+    transition:all .15s ease;
 }
 
 .white.active{
