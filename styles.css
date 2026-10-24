@@ -225,3 +225,103 @@ header{
         #00D5FF
     );
 }
+
+#pianoWrapper{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    overflow-y:hidden;
+
+    padding:20px;
+
+    box-sizing:border-box;
+}
+
+#keyboard{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    min-width:2600px;
+
+    height:420px;
+
+    margin:auto;
+}
+
+.white{
+
+    width:42px;
+
+    height:400px;
+
+    background:white;
+
+    border:1px solid #222;
+
+    position:relative;
+
+    box-sizing:border-box;
+
+    color:black;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-end;
+
+    padding-bottom:10px;
+}
+
+.white.active{
+
+    background:#00E676;
+
+    box-shadow:
+        0 0 15px #00E676;
+}
+
+.black{
+
+    position:absolute;
+
+    width:28px;
+
+    height:240px;
+
+    background:black;
+
+    z-index:100;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-end;
+
+    padding-bottom:8px;
+
+    font-size:10px;
+
+    font-weight:bold;
+}
+
+.black.active{
+
+    background:#8B5CF6;
+
+    box-shadow:
+        0 0 15px #8B5CF6;
+}
