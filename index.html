@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piano Composer Pro</title>
+
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+<header>
+    <h1>🎹 Piano Composer Pro</h1>
+
+    <div class="controls">
+        <button id="connectMidi">Connexion MIDI</button>
+
+        <label>Tempo</label>
+        <input type="range" id="tempo" min="20" max="300" value="120">
+
+        <span id="tempoValue">120 BPM</span>
+    </div>
+</header>
+
+<section class="lesson">
+    <h2>Progression active</h2>
+
+    <div id="progression">
+        <span class="chord active">C</span>
+        <span class="chord">G</span>
+        <span class="chord">Am</span>
+        <span class="chord">F</span>
+    </div>
+</section>
+
+<section class="keyboard" id="keyboard"></section>
+
+<div id="midiStatus">
+    Aucun périphérique MIDI connecté
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
