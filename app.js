@@ -136,17 +136,26 @@ function handleMidi(event){
     const [status,note,velocity] =
         event.data;
 
-    const index = note % 24;
+    const firstMidiNote = 36; // C2
 
-    const key = notes[index];
+    const index =
+    note - firstMidiNote;
 
+    const key =
+    pianoNotes[index];
+    
     if(status === 144 && velocity > 0){
 
         pressedNotes.add(note);
 
         if(key){
-            key.classList.add("active");
-        }
+
+    key.classList.add("active");
+
+    currentNote.innerText =
+    "Note : " +
+    noteNames[note % 12];
+}
 
         updateChord();
     }
@@ -157,8 +166,10 @@ function handleMidi(event){
         pressedNotes.delete(note);
 
         if(key){
-            key.classList.remove("active");
-        }
+
+    key.classList.remove("active");
+}
+
 
         updateChord();
     }
