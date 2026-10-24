@@ -20,13 +20,24 @@ for(let i=0;i<24;i++){
 
     const key = document.createElement("div");
 
-    key.className = "white";
+key.className = "white";
 
-    key.dataset.note = i;
+key.dataset.note = i;
 
-    keyboard.appendChild(key);
+const labels = [
+"C","C#","D","D#","E",
+"F","F#","G","G#","A",
+"A#","B"
+];
 
-    notes.push(key);
+key.innerHTML =
+'<div style="color:black;text-align:center;margin-top:220px;font-size:12px;">'
++ labels[i % 12] +
+'</div>';
+
+keyboard.appendChild(key);
+
+notes.push(key);
 }
 
 const chordDisplay =
