@@ -29,16 +29,8 @@ for(let i=0;i<24;i++){
     notes.push(key);
 }
 
-// Zone affichage accord
-const chordDisplay = document.createElement("h2");
-chordDisplay.id = "detectedChord";
-chordDisplay.style.textAlign = "center";
-chordDisplay.innerText = "Accord : -";
-
-document.body.insertBefore(
-    chordDisplay,
-    document.getElementById("midiStatus")
-);
+const chordDisplay =
+document.getElementById("detectedChord");
 
 function getChord(noteSet){
 
