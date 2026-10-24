@@ -59,14 +59,24 @@ header{
     display:flex;
     justify-content:center;
     align-items:flex-end;
-    height:420px;
+
+    height:500px;
+
     margin-top:20px;
+
     overflow-x:auto;
     overflow-y:hidden;
-    padding:20px;
-    background:#050505;
-    border-top:2px solid #8B5CF6;
-    border-bottom:2px solid #8B5CF6;
+
+    padding:30px;
+
+    background:#020202;
+
+    border-top:3px solid #8B5CF6;
+    border-bottom:3px solid #8B5CF6;
+
+    box-shadow:
+    0 0 20px #8B5CF6,
+    inset 0 0 20px #000;
 }
 
 .white{
