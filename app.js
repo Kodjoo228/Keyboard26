@@ -133,6 +133,8 @@ async function connectMidi(){
 
 function handleMidi(event){
 
+    console.log("MIDI reçu :", event.data);
+    
     const [status,note,velocity] =
         event.data;
 
