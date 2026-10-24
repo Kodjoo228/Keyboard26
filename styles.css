@@ -108,7 +108,14 @@ header{
 }
 
 .white.active{
+
     background:#00E676;
+
+    box-shadow:
+
+    0 0 22px #00E676,
+
+    0 0 40px #00E676;
 }
 
 #midiStatus{
