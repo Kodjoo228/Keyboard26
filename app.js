@@ -31,8 +31,8 @@ const labels = [
 ];
 
 key.innerHTML =
-'<div style="color:black;text-align:center;padding-top:200px;font-size:14px;font-weight:bold;">'
-+ labels[i % 12] +
+'<div style="color:black;text-align:center;padding-top:10px;font-size:14px;font-weight:bold;">'
++ noteNames[i % 12] +
 '</div>';
 
 keyboard.appendChild(key);
