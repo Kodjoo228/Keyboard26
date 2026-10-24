@@ -1,0 +1,54 @@
+body{
+    margin:0;
+    background:#121212;
+    color:white;
+    font-family:Segoe UI,sans-serif;
+}
+
+header{
+    background:#1e1e1e;
+    padding:20px;
+}
+
+.controls{
+    display:flex;
+    gap:15px;
+    align-items:center;
+}
+
+.lesson{
+    padding:20px;
+}
+
+.chord{
+    display:inline-block;
+    background:#333;
+    padding:10px 20px;
+    border-radius:8px;
+}
+
+.active{
+    background:#00c853;
+}
+
+.keyboard{
+    display:flex;
+    justify-content:center;
+    margin-top:40px;
+}
+
+.white{
+    width:40px;
+    height:220px;
+    background:white;
+    border:1px solid black;
+}
+
+.white.active{
+    background:#00ff88;
+}
+
+#midiStatus{
+    text-align:center;
+    margin-top:20px;
+}
