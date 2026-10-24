@@ -16,7 +16,7 @@ tempoSlider.addEventListener("input", e=>{
 });
 
 // Création de 24 touches
-for(let i=0;i<24;i++){
+for(let i=0;i<61;i++){
 
     const key = document.createElement("div");
 
@@ -24,16 +24,14 @@ key.className = "white";
 
 key.dataset.note = i;
 
-const labels = [
-"C","C#","D","D#","E",
-"F","F#","G","G#","A",
-"A#","B"
-];
+const octave =
+Math.floor(i / 12) + 2;
 
 key.innerHTML =
-'<div style="color:black;text-align:center;padding-top:10px;font-size:14px;font-weight:bold;">'
-+ noteNames[i % 12] +
-'</div>';
+'<div style="color:black;text-align:center;padding-top:10px;font-size:13px;font-weight:bold;">'
++ noteNames[i % 12]
++ octave
++ '</div>';
 
 keyboard.appendChild(key);
 
