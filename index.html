@@ -11,24 +11,71 @@
 <body>
 
 <header>
-    <div class="logoBar">
 
-    <h1>🎹 Piano Composer Pro</h1>
+    <div class="topBar">
 
-    <div class="signature">
-        ✨ ByDélé
+        <div class="titleBlock">
+
+            <h1>🎹 Piano Composer Pro</h1>
+
+            <div class="signature">
+                ✨ ByDélé
+            </div>
+
+        </div>
+
+        <div class="playerStatus">
+
+            <h3 id="playerLevel">
+                🎖 Niveau 1
+            </h3>
+
+            <div class="headerXpBar">
+
+                <div id="headerXpFill"></div>
+
+            </div>
+
+            <p id="headerXpText">
+
+                0 / 500 XP
+
+            </p>
+
+        </div>
+
     </div>
-
-</div>
 
     <div class="controls">
-        <button id="connectMidi">Connexion MIDI</button>
 
-        <label>Tempo</label>
-        <input type="range" id="tempo" min="20" max="300" value="120">
+        <button id="connectMidi">
 
-        <span id="tempoValue">120 BPM</span>
+            Connexion MIDI
+
+        </button>
+
+        <label>
+
+            Tempo
+
+        </label>
+
+        <input
+            type="range"
+            id="tempo"
+            min="20"
+            max="300"
+            value="120"
+        >
+
+        <span id="tempoValue">
+
+            120 BPM
+
+        </span>
+
     </div>
+
 </header>
 
 <section class="lesson">
