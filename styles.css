@@ -56,33 +56,38 @@ header{
 }
 
 .keyboard{
+
     display:flex;
-    justify-content:center;
+
+    justify-content:flex-start;
+
     align-items:flex-end;
 
-    height:500px;
+    height:520px;
 
-    margin-top:20px;
+    width:100%;
 
     overflow-x:auto;
+
     overflow-y:hidden;
 
-    padding:30px;
+    padding:20px;
 
-    background:#020202;
+    background:#030303;
 
     border-top:3px solid #8B5CF6;
+
     border-bottom:3px solid #8B5CF6;
 
     box-shadow:
-    0 0 20px #8B5CF6,
-    inset 0 0 20px #000;
+    0 0 20px #8B5CF6;
 }
 
 .white{
-    width:65px;
 
-    height:420px;
+    min-width:70px;
+
+    height:440px;
 
     background:white;
 
@@ -100,12 +105,11 @@ header{
 
     font-weight:bold;
 
-    font-size:18px;
+    font-size:16px;
 
-    box-sizing:border-box;
-
-    transition:all .15s ease;
+    transition:.15s;
 }
+
 
 .white.active{
 
