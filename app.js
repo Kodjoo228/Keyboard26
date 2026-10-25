@@ -217,3 +217,87 @@ function toggleFullscreen(){
         document.exitFullscreen();
     }
 }
+
+// ======================
+// AUDIO ENGINE V1
+// ======================
+
+let audioContext = null;
+
+let masterVolume = 0.5;
+
+function initAudio(){
+
+    if(!audioContext){
+
+        audioContext =
+        new (
+            window.AudioContext ||
+            window.webkitAudioContext
+        )();
+    }
+}
+
+function playNoteFrequency(freq){
+
+    initAudio();
+
+    const osc =
+    audioContext.createOscillator();
+
+    const gain =
+    audioContext.createGain();
+
+    osc.type = "triangle";
+
+    osc.frequency.value = freq;
+
+    gain.gain.value = masterVolume;
+
+    osc.connect(gain);
+
+    gain.connect(
+        audioContext.destination
+    );
+
+    osc.start();
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.0001,
+        audioContext.currentTime + 1
+    );
+
+    osc.stop(
+        audioContext.currentTime + 1
+    );
+}
+
+function midiToFrequency(note){
+
+    return 440 *
+    Math.pow(
+        2,
+        (note - 69) / 12
+    );
+}
+
+const volumeSlider =
+document.getElementById("volume");
+
+const volumeValue =
+document.getElementById("volumeValue");
+
+if(volumeSlider){
+
+    volumeSlider.addEventListener(
+        "input",
+        function(){
+
+            masterVolume =
+            volumeSlider.value / 100;
+
+            volumeValue.innerText =
+            volumeSlider.value + "%";
+        }
+    );
+}
