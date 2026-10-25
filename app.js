@@ -103,16 +103,12 @@ function handleMidi(event){
     const [status,note,velocity] =
         event.data;
 
-    const firstMidiNote = 36; // C2
-
-    const index =
-    note - firstMidiNote;
 
     const key =
-    pianoNotes[index];
+    pianoNotes[note];
     
     midiStatus.innerText =
-    "Note MIDI : " + note +
+"Connecté • Note MIDI : " + note;
     " | Index : " + index;
     
     if(status === 144 && velocity > 0){
