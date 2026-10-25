@@ -155,6 +155,10 @@ function handleMidi(event){
 
         pressedNotes.add(note);
 
+        playNoteFrequency(
+    midiToFrequency(note)
+);
+
         if(key){
 
             key.classList.add(
