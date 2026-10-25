@@ -270,11 +270,13 @@ header{
 
     align-items:flex-end;
 
-    min-width:2600px;
+    min-width:3200px;
 
-    height:420px;
+    height:480px;
 
     margin:auto;
+
+    padding-top:40px;
 }
 
 .white{
@@ -362,4 +364,45 @@ header{
     );
 
     pointer-events:none;
+}
+
+.black{
+
+    position:absolute;
+
+    width:26px;
+
+    height:260px;
+
+    background:
+    linear-gradient(
+        to bottom,
+        #444,
+        #111
+    );
+
+    border-radius:
+    0 0 8px 8px;
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,.15),
+        0 3px 8px rgba(0,0,0,.8);
+
+    z-index:50;
+
+    transition:.1s;
+}
+
+.black.active{
+
+    background:
+    linear-gradient(
+        to bottom,
+        #bd9cff,
+        #8B5CF6
+    );
+
+    box-shadow:
+        0 0 15px #8B5CF6,
+        0 0 25px #8B5CF6;
 }
