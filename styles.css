@@ -363,24 +363,3 @@ header{
 
     pointer-events:none;
 }
-
-#keyboard::after{
-
-    content:"✨ ByDélé";
-
-    position:absolute;
-
-    right:20px;
-
-    bottom:15px;
-
-    font-size:18px;
-
-    font-weight:bold;
-
-    color:#8B5CF6;
-
-    text-shadow:
-        0 0 10px #8B5CF6;
-}
-
