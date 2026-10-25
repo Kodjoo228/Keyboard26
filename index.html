@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<head> 
+<head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Piano Composer Pro ByDélé
-    </title>
+<title>Piano Composer Pro ByDélé</title>
 
-    <link
-        rel="stylesheet"
-        href="styles.css">
+<link rel="stylesheet" href="styles.css">
 
 </head>
 
@@ -23,128 +18,91 @@
 
 <header>
 
-    <div class="logoBar">
+<div class="logoBar">
 
-        <h1>
-            🎹 Piano Composer Pro
-        </h1>
+<h1>🎹 Piano Composer Pro</h1>
 
-        <div class="signature">
-            ✨ ByDélé
-        </div>
+<div class="signature">
+✨ ByDélé
+</div>
 
-    </div>
+</div>
 
-    <div class="controls">
+<div class="controls">
 
-        <button id="connectMidi">
-            Connexion MIDI
-        </button>
+<button id="connectMidi">
+Connexion MIDI
+</button>
 
-        <button onclick="toggleFullscreen()">
-            🎹 Plein écran
-        </button>
+<button onclick="toggleFullscreen()">
+🎹 Plein écran
+</button>
 
-        <label>
-            Tempo
-        </label>
+<input
+type="range"
+id="tempo"
+min="20"
+max="300"
+value="120">
 
-        <input
-            type="range"
-            id="tempo"
-            min="20"
-            max="300"
-            value="120">
+<span id="tempoValue">
+120 BPM
+</span>
 
-        <span id="tempoValue">
-            120 BPM
-        </span>
-
-    </div>
+</div>
 
 </header>
 
 <section class="lesson">
 
-    <h2>
-        🎼 Progression active
-    </h2>
-    
-    <h2>
-        Progression active
-    </h2>
+<h2>🎼 Progression active</h2>
 
-    <div id="progression">
+<div id="progression">
 
-        <span class="chord active">
-            C
-        </span>
+<span class="chord active">C</span>
 
-        <span class="chord">
-            G
-        </span>
+<span class="chord">G</span>
 
-        <span class="chord">
-            Am
-        </span>
+<span class="chord">Am</span>
 
-        <span class="chord">
-            F
-        </span>
+<span class="chord">F</span>
 
-    </div>
+</div>
 
 </section>
 
-<section
-    class="keyboard"
-    id="keyboard">
-
+<section class="keyboard" id="keyboard">
 </section>
 
 <div id="midiStatus">
-
-    Aucun périphérique MIDI connecté
-
+Aucun périphérique MIDI connecté
 </div>
 
 <div id="infoPanel">
 
-    <h2 id="currentNote">
+<h2 id="currentNote">
+Note : -
+</h2>
 
-        Note : -
+<h2 id="detectedChord">
+Accord : -
+</h2>
 
-    </h2>
+<h2 id="suggestedScale">
+Gamme : -
+</h2>
 
-    <h2 id="detectedChord">
-
-        Accord : -
-
-    </h2>
-
-    <h2 id="suggestedScale">
-
-        Gamme : -
-
-    </h2>
-
-    <h3 id="noteCounter">
-
-        Notes jouées : 0
-
-    </h3>
+<h3 id="noteCounter">
+Notes jouées : 0
+</h3>
 
 </div>
 
 <div id="history">
 
-    <h2>
-        Historique
-    </h2>
+<h2>Historique</h2>
 
-    <ul id="historyList">
-
-    </ul>
+<ul id="historyList"></ul>
 
 </div>
 
