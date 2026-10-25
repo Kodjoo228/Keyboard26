@@ -146,6 +146,10 @@ function handleMidi(event){
     const key =
     pianoNotes[index];
     
+    midiStatus.innerText =
+    "Note MIDI : " + note +
+    " | Index : " + index;
+    
     if(status === 144 && velocity > 0){
 
         pressedNotes.add(note);
