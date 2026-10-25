@@ -19,6 +19,17 @@ tempoSlider.addEventListener("input", e=>{
 
 const pianoNotes = [];
 
+const blackKeyPattern =
+[
+    true,
+    true,
+    false,
+    true,
+    true,
+    true,
+    false
+];
+
 const whiteMap = [
 "C",
 "D",
