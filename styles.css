@@ -85,15 +85,38 @@ header{
 
 .white{
 
-    min-width:70px;
+    width:42px;
 
-    height:440px;
+    height:400px;
 
-    background:white;
+    position:relative;
 
-    border:1px solid #222;
+    background:
+    linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        #fafafa 20%,
+        #ececec 75%,
+        #dadada 100%
+    );
+
+    border:1px solid #999;
+
+    border-radius:0 0 12px 12px;
+
+    box-shadow:
+
+        inset 0 2px 3px rgba(255,255,255,.9),
+
+        inset 0 -3px 5px rgba(0,0,0,.15),
+
+        0 6px 12px rgba(0,0,0,.35);
 
     color:black;
+
+    font-size:12px;
+
+    font-weight:bold;
 
     display:flex;
 
@@ -103,13 +126,13 @@ header{
 
     padding-bottom:12px;
 
-    font-weight:bold;
+    box-sizing:border-box;
 
-    font-size:16px;
-
-    transition:.15s;
+    transition:
+    transform .08s ease,
+    box-shadow .15s ease,
+    background .15s ease;
 }
-
 
 .white.active{
 
@@ -285,37 +308,25 @@ header{
 
 .white.active{
 
-    background:#00E676;
+    background:
+    linear-gradient(
+        to bottom,
+        #8cffb5,
+        #00e676
+    );
+
+    transform:
+    translateY(4px);
 
     box-shadow:
-        0 0 15px #00E676;
-}
 
-.black{
+        inset 0 2px 3px rgba(255,255,255,.8),
 
-    position:absolute;
+        0 0 10px #00e676,
 
-    width:28px;
+        0 0 20px #00e676,
 
-    height:240px;
-
-    background:black;
-
-    z-index:100;
-
-    color:white;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:flex-end;
-
-    padding-bottom:8px;
-
-    font-size:10px;
-
-    font-weight:bold;
+        0 3px 8px rgba(0,0,0,.5);
 }
 
 .black.active{
@@ -325,3 +336,51 @@ header{
     box-shadow:
         0 0 15px #8B5CF6;
 }
+
+.white::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    right:0;
+
+    height:40%;
+
+    border-radius:0 0 30px 30px;
+
+    background:
+
+    linear-gradient(
+        to bottom,
+        rgba(255,255,255,.65),
+        rgba(255,255,255,0)
+    );
+
+    pointer-events:none;
+}
+
+#keyboard::after{
+
+    content:"✨ ByDélé";
+
+    position:absolute;
+
+    right:20px;
+
+    bottom:15px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    color:#8B5CF6;
+
+    text-shadow:
+        0 0 10px #8B5CF6;
+}
+
