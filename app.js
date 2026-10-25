@@ -26,6 +26,19 @@ for(let i = 0; i < 61; i++){
 
     keyboard.appendChild(key);
 
+    key.addEventListener(
+    "click",
+    function(){
+
+        const midi =
+        36 + i;
+
+        playNoteFrequency(
+            midiToFrequency(midi)
+        );
+    }
+);
+
     notes.push(key);
 }
 
