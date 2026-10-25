@@ -109,6 +109,7 @@ function handleMidi(event){
     
     midiStatus.innerText =
 "Connecté • Note MIDI : " + note;
+    
     " | Index : " + index;
     
     if(status === 144 && velocity > 0){
