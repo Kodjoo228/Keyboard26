@@ -3,7 +3,7 @@ const keyboard = document.getElementById("keyboard");
 const tempoSlider = document.getElementById("tempo");
 const tempoValue = document.getElementById("tempoValue");
 
-const notes = [];
+const notes = []; 
 const pressedNotes = new Set();
 
 const noteNames = [
