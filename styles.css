@@ -254,3 +254,36 @@ button:hover{
 
     border-bottom:1px solid #333;
 }
+
+.keyboard{
+
+    scroll-behavior:smooth;
+}
+
+#infoPanel{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:40px;
+
+    flex-wrap:wrap;
+}
+
+#infoPanel h2{
+
+    font-size:28px !important;
+}
+
+#infoPanel h3{
+
+    font-size:22px !important;
+}
+
+#history{
+
+    max-height:220px;
+
+    overflow-y:auto;
+}
