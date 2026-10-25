@@ -15,52 +15,6 @@ tempoSlider.addEventListener("input", e=>{
     tempoValue.innerText = e.target.value + " BPM";
 });
 
-// Création de 61 touches
-
-const pianoNotes = [];
-
-const blackKeyPattern =
-[
-    true,
-    true,
-    false,
-    true,
-    true,
-    true,
-    false
-];
-
-const whiteMap = [
-"C",
-"D",
-"E",
-"F",
-"G",
-"A",
-"B"
-];
-
-for(let i=0;i<61;i++){
-
-    const white =
-    document.createElement("div");
-
-    white.className = "white";
-
-    const octave =
-    Math.floor(i / 7) + 2;
-
-    const note =
-    whiteMap[i % 7];
-
-    white.innerHTML =
-    note + octave;
-
-    keyboard.appendChild(white);
-
-    pianoNotes.push(white);
-}
-
 
 const chordDisplay =
 document.getElementById("detectedChord");
