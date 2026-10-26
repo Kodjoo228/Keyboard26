@@ -243,15 +243,40 @@ let audioContext = null;
 
 let masterVolume = 0.5;
 
+let masterVolume =
+
+localStorage.getItem(
+"volume"
+)
+
+?
+
+parseFloat(
+
+localStorage.getItem(
+"volume"
+)
+
+)
+
+:
+
+0.5;
+
 let currentInstrument =
-"triangle";
+localStorage.getItem(
+"instrument"
+) || "triangle";
 
 const instrumentSelect =
 document.getElementById(
-    "instrument"
+"instrument"
 );
 
 if(instrumentSelect){
+
+    instrumentSelect.value =
+    currentInstrument;
 
     instrumentSelect
     .addEventListener(
@@ -260,10 +285,14 @@ if(instrumentSelect){
 
             currentInstrument =
             this.value;
+
+            localStorage.setItem(
+                "instrument",
+                currentInstrument
+            );
         }
     );
 }
-
 
 function initAudio(){
 
