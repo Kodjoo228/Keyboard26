@@ -12,32 +12,73 @@ const noteNames = [
 ];
 
 // Construction du clavier simple
+const blackNotes =
+["C#","D#","F#","G#","A#"];
+
+let whiteIndex = 0;
+
 for(let i = 0; i < 61; i++){
 
-    const key = document.createElement("div");
-
-    key.className = "white";
+    const noteName =
+    noteNames[i % 12];
 
     const octave =
     Math.floor(i / 12) + 2;
 
+    const midi =
+    36 + i;
+
+    const isBlack =
+    blackNotes.includes(
+        noteName
+    );
+
+    const key =
+    document.createElement("div");
+
+    key.className =
+    isBlack
+    ? "black"
+    : "white";
+
     key.innerHTML =
-    noteNames[i % 12] + octave;
+    noteName + octave;
+
+    if(isBlack){
+
+        key.style.position =
+        "absolute";
+
+        key.style.left =
+        (
+            whiteIndex * 90
+            - 22
+        ) + "px";
+
+        key.style.zIndex =
+        "500";
+
+    }else{
+
+        whiteIndex++;
+    }
 
     keyboard.appendChild(key);
 
+    notes.push(key);
+
     key.addEventListener(
-    "click",
-    function(){
+        "click",
+        function(){
 
-        const midi =
-        36 + i;
-
-        playNoteFrequency(
-            midiToFrequency(midi)
-        );
-    }
-);
+            playNoteFrequency(
+                midiToFrequency(
+                    midi
+                )
+            );
+        }
+    );
+}
 
     notes.push(key);
 }
