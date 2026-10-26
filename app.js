@@ -236,25 +236,19 @@ function toggleFullscreen(){
 }
 
 // ======================
-// AUDIO ENGINE V1
+// AUDIO ENGINE V2
 // ======================
 
 let audioContext = null;
 
 let masterVolume =
 
-localStorage.getItem(
-"volume"
-)
+localStorage.getItem("volume")
 
 ?
 
 parseFloat(
-
-localStorage.getItem(
-"volume"
-)
-
+localStorage.getItem("volume")
 )
 
 :
@@ -262,22 +256,41 @@ localStorage.getItem(
 0.5;
 
 let currentInstrument =
-localStorage.getItem(
-"instrument"
-) || "triangle";
+
+localStorage.getItem("instrument")
+
+||
+
+"triangle";
+
+let currentPreset =
+
+localStorage.getItem("preset")
+
+||
+
+"studio";
+
+function initAudio(){
+
+    if(!audioContext){
+
+        audioContext = new (
+            window.AudioContext ||
+            window.webkitAudioContext
+        )();
+    }
+}
 
 const instrumentSelect =
-document.getElementById(
-"instrument"
-);
+document.getElementById("instrument");
 
 if(instrumentSelect){
 
     instrumentSelect.value =
     currentInstrument;
 
-    instrumentSelect
-    .addEventListener(
+    instrumentSelect.addEventListener(
         "change",
         function(){
 
@@ -292,16 +305,27 @@ if(instrumentSelect){
     );
 }
 
-function initAudio(){
+const presetSelect =
+document.getElementById("preset");
 
-    if(!audioContext){
+if(presetSelect){
 
-        audioContext =
-        new (
-            window.AudioContext ||
-            window.webkitAudioContext
-        )();
-    }
+    presetSelect.value =
+    currentPreset;
+
+    presetSelect.addEventListener(
+        "change",
+        function(){
+
+            currentPreset =
+            this.value;
+
+            localStorage.setItem(
+                "preset",
+                currentPreset
+            );
+        }
+    );
 }
 
 function playNoteFrequency(freq){
@@ -317,9 +341,35 @@ function playNoteFrequency(freq){
     osc.type =
     currentInstrument;
 
-    osc.frequency.value = freq;
+    osc.frequency.value =
+    freq;
 
-    gain.gain.value = masterVolume;
+    let presetVolume =
+    masterVolume;
+
+    if(
+        currentPreset ===
+        "concert"
+    ){
+        presetVolume *= 1.1;
+    }
+
+    if(
+        currentPreset ===
+        "afrobeat"
+    ){
+        presetVolume *= 0.9;
+    }
+
+    if(
+        currentPreset ===
+        "gospel"
+    ){
+        presetVolume *= 1.2;
+    }
+
+    gain.gain.value =
+    presetVolume;
 
     osc.connect(gain);
 
@@ -342,6 +392,7 @@ function playNoteFrequency(freq){
 function midiToFrequency(note){
 
     return 440 *
+
     Math.pow(
         2,
         (note - 69) / 12
@@ -349,10 +400,14 @@ function midiToFrequency(note){
 }
 
 const volumeSlider =
-document.getElementById("volume");
+document.getElementById(
+    "volume"
+);
 
 const volumeValue =
-document.getElementById("volumeValue");
+document.getElementById(
+    "volumeValue"
+);
 
 if(volumeSlider){
 
