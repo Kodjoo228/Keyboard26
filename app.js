@@ -358,6 +358,12 @@ document.getElementById("volumeValue");
 
 if(volumeSlider){
 
+    volumeSlider.value =
+    masterVolume * 100;
+
+    volumeValue.innerText =
+    volumeSlider.value + "%";
+
     volumeSlider.addEventListener(
         "input",
         function(){
@@ -367,6 +373,11 @@ if(volumeSlider){
 
             volumeValue.innerText =
             volumeSlider.value + "%";
+
+            localStorage.setItem(
+                "volume",
+                masterVolume
+            );
         }
     );
 }
