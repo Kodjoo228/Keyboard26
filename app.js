@@ -340,7 +340,7 @@ if(instrumentSelect){
 
     instrumentSelect.addEventListener(
         "change",
-        function(){
+        async function(){
 
             currentInstrument =
             this.value;
@@ -349,9 +349,12 @@ if(instrumentSelect){
                 "instrument",
                 currentInstrument
             );
+
+            await loadInstrument();
         }
     );
 }
+
 
 const presetSelect =
 document.getElementById("preset");
