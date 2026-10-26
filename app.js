@@ -241,8 +241,6 @@ function toggleFullscreen(){
 
 let audioContext = null;
 
-let masterVolume = 0.5;
-
 let masterVolume =
 
 localStorage.getItem(
