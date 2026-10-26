@@ -271,6 +271,54 @@ localStorage.getItem("preset")
 
 "studio";
 
+let soundfontInstrument = null;
+
+async function loadInstrument(){
+
+    initAudio();
+
+    let instrumentName =
+    "acoustic_grand_piano";
+
+    switch(currentInstrument){
+
+        case "rhodes":
+            instrumentName =
+            "electric_piano_1";
+        break;
+
+        case "organ":
+            instrumentName =
+            "drawbar_organ";
+        break;
+
+        case "strings":
+            instrumentName =
+            "string_ensemble_1";
+        break;
+
+        case "guitar":
+            instrumentName =
+            "acoustic_guitar_steel";
+        break;
+
+        case "nylon":
+            instrumentName =
+            "acoustic_guitar_nylon";
+        break;
+
+        default:
+            instrumentName =
+            "acoustic_grand_piano";
+    }
+
+    soundfontInstrument =
+    await Soundfont.instrument(
+        audioContext,
+        instrumentName
+    );
+}
+
 function initAudio(){
 
     if(!audioContext){
