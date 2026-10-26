@@ -441,6 +441,81 @@ function playNoteFrequency(freq){
         osc.stop(
             audioContext.currentTime + 2
         );
+    }
+}
+
+    osc.frequency.value = freq;
+
+    let presetVolume =
+    masterVolume;
+
+    if(currentPreset === "concert"){
+        presetVolume *= 1.1;
+    }
+
+    if(currentPreset === "afrobeat"){
+        presetVolume *= 0.9;
+    }
+
+    if(currentPreset === "gospel"){
+        presetVolume *= 1.2;
+    }
+
+    osc.connect(gain);
+
+    gain.connect(
+        audioContext.destination
+    );
+
+    gain.gain.setValueAtTime(
+        0,
+        audioContext.currentTime
+    );
+
+    gain.gain.linearRampToValueAtTime(
+        presetVolume,
+        audioContext.currentTime + 0.03
+    );
+
+    osc.start();
+
+    if(
+        currentInstrument === "guitar" ||
+        currentInstrument === "nylon"
+    ){
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.0001,
+            audioContext.currentTime + 1.5
+        );
+
+        osc.stop(
+            audioContext.currentTime + 1.5
+        );
+
+    }else if(
+        currentInstrument === "strings"
+    ){
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.0001,
+            audioContext.currentTime + 3
+        );
+
+        osc.stop(
+            audioContext.currentTime + 3
+        );
+
+    }else{
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.0001,
+            audioContext.currentTime + 2
+        );
+
+        osc.stop(
+            audioContext.currentTime + 2
+        );
 }
 
     osc.frequency.value = freq;
