@@ -73,6 +73,8 @@ button:hover{
 
 .keyboard{
 
+    position:relative;
+
     display:flex;
 
     align-items:flex-end;
