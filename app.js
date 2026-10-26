@@ -338,38 +338,58 @@ function playNoteFrequency(freq){
     const gain =
     audioContext.createGain();
 
-    osc.type =
-    currentInstrument;
+    switch(currentInstrument){
 
-    osc.frequency.value =
-    freq;
+        case "piano":
+            osc.type = "triangle";
+        break;
+
+        case "rhodes":
+            osc.type = "sine";
+        break;
+
+        case "organ":
+            osc.type = "square";
+        break;
+
+        case "strings":
+            osc.type = "sawtooth";
+        break;
+
+        case "guitar":
+            osc.type = "triangle";
+        break;
+
+        case "nylon":
+            osc.type = "sine";
+        break;
+
+        default:
+            osc.type = "triangle";
+        break;
+    }
+
+    osc.frequency.value = freq;
 
     let presetVolume =
     masterVolume;
 
-    if(
-        currentPreset ===
-        "concert"
-    ){
+    if(currentPreset === "concert"){
+
         presetVolume *= 1.1;
     }
 
-    if(
-        currentPreset ===
-        "afrobeat"
-    ){
+    if(currentPreset === "afrobeat"){
+
         presetVolume *= 0.9;
     }
 
-    if(
-        currentPreset ===
-        "gospel"
-    ){
+    if(currentPreset === "gospel"){
+
         presetVolume *= 1.2;
     }
 
-    gain.gain.value =
-    presetVolume;
+    gain.gain.value = 0;
 
     osc.connect(gain);
 
@@ -379,14 +399,41 @@ function playNoteFrequency(freq){
 
     osc.start();
 
-    gain.gain.exponentialRampToValueAtTime(
-        0.0001,
-        audioContext.currentTime + 1
-    );
+    if(
+        currentInstrument === "guitar" ||
+        currentInstrument === "nylon"
+    ){
 
-    osc.stop(
-        audioContext.currentTime + 1
-    );
+        gain.gain.linearRampToValueAtTime(
+            presetVolume,
+            audioContext.currentTime + 0.01
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.0001,
+            audioContext.currentTime + 1.5
+        );
+
+        osc.stop(
+            audioContext.currentTime + 1.5
+        );
+
+    }else{
+
+        gain.gain.linearRampToValueAtTime(
+            presetVolume,
+            audioContext.currentTime + 0.05
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.0001,
+            audioContext.currentTime + 2
+        );
+
+        osc.stop(
+            audioContext.currentTime + 2
+        );
+    }
 }
 
 function midiToFrequency(note){
