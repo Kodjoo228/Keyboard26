@@ -12,21 +12,6 @@ const noteNames = [
 ];
 
 // Construction du clavier simple
-const blackNotes =
-["C#","D#","F#","G#","A#"];
-
-let whiteIndex = 0;
-
-for(let i = 0; i < 61; i++){
-
-    const noteName =
-    noteNames[i % 12];
-
-    const octave =
-    Math.floor(i / 12) + 2;
-
-    const midi =
-    36 + i;
 
     const blackNotes =
 ["C#","D#","F#","G#","A#"];
