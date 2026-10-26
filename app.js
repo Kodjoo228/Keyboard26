@@ -441,7 +441,6 @@ function playNoteFrequency(freq){
         osc.stop(
             audioContext.currentTime + 2
         );
-    }
 }
 
     osc.frequency.value = freq;
