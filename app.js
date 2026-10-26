@@ -12,70 +12,22 @@ const noteNames = [
 ];
 
 // Construction du clavier simple
-
-    const blackNotes =
-["C#","D#","F#","G#","A#"];
-
-let whiteIndex = 0;
-
 for(let i = 0; i < 61; i++){
 
-    const noteName =
-    noteNames[i % 12];
+    const key = document.createElement("div");
+
+    key.className = "white";
 
     const octave =
     Math.floor(i / 12) + 2;
 
-    const midi =
-    36 + i;
-
-    const isBlack =
-    blackNotes.includes(noteName);
-
-    const key =
-    document.createElement("div");
-
-    key.className =
-    isBlack ? "black" : "white";
-
     key.innerHTML =
-    noteName + octave;
-
-    if(isBlack){
-
-        key.style.position =
-        "absolute";
-
-        key.style.left =
-        (
-            whiteIndex * 90
-            - 22
-        ) + "px";
-
-        key.style.zIndex =
-        "500";
-
-    }else{
-
-        whiteIndex++;
-    }
+    noteNames[i % 12] + octave;
 
     keyboard.appendChild(key);
 
     notes.push(key);
-
-    key.addEventListener(
-        "click",
-        function(){
-
-            playNoteFrequency(
-                midiToFrequency(midi)
-            );
-
-        }
-    );
 }
-
 
 tempoSlider.addEventListener("input", e => {
 
@@ -203,10 +155,6 @@ function handleMidi(event){
 
         pressedNotes.add(note);
 
-        playNoteFrequency(
-    midiToFrequency(note)
-);
-
         if(key){
 
             key.classList.add(
@@ -268,245 +216,4 @@ function toggleFullscreen(){
 
         document.exitFullscreen();
     }
-}
-
-// ======================
-// AUDIO ENGINE V2
-// ======================
-
-let audioContext = null;
-
-let masterVolume =
-
-localStorage.getItem("volume")
-
-?
-
-parseFloat(
-localStorage.getItem("volume")
-)
-
-:
-
-0.5;
-
-let currentInstrument =
-
-localStorage.getItem("instrument")
-
-||
-
-"piano";
-
-let currentPreset =
-
-localStorage.getItem("preset")
-
-||
-
-"studio";
-
-
-function initAudio(){
-
-    if(!audioContext){
-
-        audioContext = new (
-            window.AudioContext ||
-            window.webkitAudioContext
-        )();
-    }
-}
-
-const instrumentSelect =
-document.getElementById("instrument");
-
-if(instrumentSelect){
-
-    instrumentSelect.value =
-    currentInstrument;
-
-    instrumentSelect.addEventListener(
-        "change",
-        async function(){
-
-            currentInstrument =
-            this.value;
-
-            localStorage.setItem(
-                "instrument",
-                currentInstrument
-            );
-
-            await loadInstrument();
-        }
-    );
-}
-
-
-const presetSelect =
-document.getElementById("preset");
-
-if(presetSelect){
-
-    presetSelect.value =
-    currentPreset;
-
-    presetSelect.addEventListener(
-        "change",
-        function(){
-
-            currentPreset =
-            this.value;
-
-            localStorage.setItem(
-                "preset",
-                currentPreset
-            );
-        }
-    );
-}
-
-function playNoteFrequency(freq){
-
-    initAudio();
-
-    const osc =
-    audioContext.createOscillator();
-
-    const gain =
-    audioContext.createGain();
-
-    switch(currentInstrument){
-
-        case "piano":
-            osc.type = "triangle";
-            break;
-
-        case "rhodes":
-            osc.type = "sine";
-            break;
-
-        case "organ":
-            osc.type = "square";
-            break;
-
-        case "strings":
-            osc.type = "sawtooth";
-            break;
-
-        case "guitar":
-            osc.type = "triangle";
-            break;
-
-        case "nylon":
-            osc.type = "sine";
-            break;
-
-        default:
-            osc.type = "triangle";
-    }
-
-    osc.frequency.value = freq;
-
-    let presetVolume =
-    masterVolume;
-
-    if(currentPreset === "concert"){
-        presetVolume *= 1.1;
-    }
-
-    if(currentPreset === "afrobeat"){
-        presetVolume *= 0.9;
-    }
-
-    if(currentPreset === "gospel"){
-        presetVolume *= 1.2;
-    }
-
-    osc.connect(gain);
-    gain.connect(audioContext.destination);
-
-    gain.gain.setValueAtTime(
-        0,
-        audioContext.currentTime
-    );
-
-    gain.gain.linearRampToValueAtTime(
-        presetVolume,
-        audioContext.currentTime + 0.03
-    );
-
-    osc.start();
-
-    let release = 2;
-
-    if(
-        currentInstrument === "guitar" ||
-        currentInstrument === "nylon"
-    ){
-        release = 1.5;
-    }
-
-    if(
-        currentInstrument === "strings"
-    ){
-        release = 3;
-    }
-
-    gain.gain.exponentialRampToValueAtTime(
-        0.0001,
-        audioContext.currentTime + release
-    );
-
-    osc.stop(
-        audioContext.currentTime + release
-    );
-}
-
-function midiToFrequency(note){
-
-    return 440 *
-
-    Math.pow(
-        2,
-        (note - 69) / 12
-    );
-}
-
-const volumeSlider =
-document.getElementById(
-    "volume"
-);
-
-const volumeValue =
-document.getElementById(
-    "volumeValue"
-);
-
-if(volumeSlider){
-
-    volumeSlider.value =
-    masterVolume * 100;
-
-    volumeValue.innerText =
-    volumeSlider.value + "%";
-
-    volumeSlider.addEventListener(
-        "input",
-        function(){
-
-            masterVolume =
-            volumeSlider.value / 100;
-
-            volumeValue.innerText =
-            volumeSlider.value + "%";
-
-            localStorage.setItem(
-                "volume",
-                masterVolume
-            );
-        }
-    );
-}
 }
