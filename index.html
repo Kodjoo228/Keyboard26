@@ -8,9 +8,12 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>Piano Composer Pro ByDélé</title>
+<title>
+Piano Composer Pro ByDélé
+</title>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet"
+href="styles.css">
 
 </head>
 
@@ -20,7 +23,9 @@ content="width=device-width, initial-scale=1.0">
 
 <div class="logoBar">
 
-<h1>🎹 Piano Composer Pro</h1>
+<h1>
+🎹 Piano Composer Pro
+</h1>
 
 <div class="signature">
 ✨ ByDélé
@@ -38,7 +43,9 @@ Connexion MIDI
 🎹 Plein écran
 </button>
 
-  <label>Volume</label>
+<label>
+Volume
+</label>
 
 <input
 type="range"
@@ -50,7 +57,34 @@ value="50">
 <span id="volumeValue">
 50%
 </span>
-  
+
+<label>
+Instrument
+</label>
+
+<select id="instrument">
+
+<option value="triangle">
+🎹 Piano
+</option>
+
+<option value="sine">
+🎛 Rhodes
+</option>
+
+<option value="square">
+🎼 Organ
+</option>
+
+<option value="sawtooth">
+🎻 Strings
+</option>
+
+</select>
+
+<label>
+Tempo
+</label>
 
 <input
 type="range"
@@ -69,71 +103,85 @@ value="120">
 
 <section class="lesson">
 
-<h2>🎼 Progression active</h2>
+<h2>
+🎼 Progression active
+</h2>
 
 <div id="progression">
 
-<span class="chord active">C</span>
+<span class="chord active">
+C
+</span>
 
-<span class="chord">G</span>
+<span class="chord">
+G
+</span>
 
-<span class="chord">Am</span>
+<span class="chord">
+Am
+</span>
 
-<span class="chord">F</span>
+<span class="chord">
+F
+</span>
 
 </div>
 
 </section>
 
-  <section id="dashboard">
+<section id="dashboard">
 
-    <div class="moduleCard">
-        🎹 Accord Academy
-    </div>
+<div class="moduleCard">
+🎹 Accord Academy
+</div>
 
-    <div class="moduleCard">
-        🎼 Scale Master
-    </div>
+<div class="moduleCard">
+🎼 Scale Master
+</div>
 
-    <div class="moduleCard">
-        🔥 Arpeggio Hero
-    </div>
+<div class="moduleCard">
+🔥 Arpeggio Hero
+</div>
 
-    <div class="moduleCard">
-        👂 Ear Training
-    </div>
+<div class="moduleCard">
+👂 Ear Training
+</div>
 
-    <div class="moduleCard">
-        🎵 Songs Studio
-    </div>
+<div class="moduleCard">
+🎵 Songs Studio
+</div>
 
-    <div class="moduleCard">
-        🌍 Afrobeat Universe
-    </div>
+<div class="moduleCard">
+🌍 Afrobeat Universe
+</div>
 
 </section>
 
 <section id="synthesiaArea">
 
-    <h2>
-        🎹 Synthesia ByDélé
-    </h2>
+<h2>
+🎹 Synthesia ByDélé
+</h2>
 
-    <div id="synthesiaScreen">
+<div id="synthesiaScreen">
 
-        <div class="comingSoon">
-            Notes descendantes à venir
-        </div>
+<div class="comingSoon">
+Notes descendantes à venir
+</div>
 
-    </div>
+</div>
 
 </section>
 
-<section class="keyboard" id="keyboard">
+<section
+class="keyboard"
+id="keyboard">
 </section>
 
 <div id="midiStatus">
+
 Aucun périphérique MIDI connecté
+
 </div>
 
 <div id="infoPanel">
@@ -158,9 +206,12 @@ Notes jouées : 0
 
 <div id="history">
 
-<h2>Historique</h2>
+<h2>
+Historique
+</h2>
 
-<ul id="historyList"></ul>
+<ul id="historyList">
+</ul>
 
 </div>
 
