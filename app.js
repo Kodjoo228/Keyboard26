@@ -81,7 +81,6 @@ for(let i = 0; i < 61; i++){
 }
 
     notes.push(key);
-}
 
 tempoSlider.addEventListener("input", e => {
 
