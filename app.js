@@ -334,29 +334,43 @@ if(presetSelect){
 
 function playNoteFrequency(freq){
 
-    if(
-        !soundfontInstrument
-    ){
-        return;
+    initAudio();
+
+    const osc =
+    audioContext.createOscillator();
+
+    const gain =
+    audioContext.createGain();
+
+    switch(currentInstrument){
+
+        case "piano":
+            osc.type = "triangle";
+            break;
+
+        case "rhodes":
+            osc.type = "sine";
+            break;
+
+        case "organ":
+            osc.type = "square";
+            break;
+
+        case "strings":
+            osc.type = "sawtooth";
+            break;
+
+        case "guitar":
+            osc.type = "triangle";
+            break;
+
+        case "nylon":
+            osc.type = "sine";
+            break;
+
+        default:
+            osc.type = "triangle";
     }
-
-    const midiNote =
-
-    Math.round(
-        69 +
-        12 *
-        Math.log2(freq / 440)
-    );
-
-    soundfontInstrument.play(
-        midiNote,
-        audioContext.currentTime,
-        {
-            gain:
-            masterVolume
-        }
-    );
-}
 
     osc.frequency.value = freq;
 
@@ -376,10 +390,7 @@ function playNoteFrequency(freq){
     }
 
     osc.connect(gain);
-
-    gain.connect(
-        audioContext.destination
-    );
+    gain.connect(audioContext.destination);
 
     gain.gain.setValueAtTime(
         0,
@@ -393,44 +404,30 @@ function playNoteFrequency(freq){
 
     osc.start();
 
+    let release = 2;
+
     if(
         currentInstrument === "guitar" ||
         currentInstrument === "nylon"
     ){
+        release = 1.5;
+    }
 
-        gain.gain.exponentialRampToValueAtTime(
-            0.0001,
-            audioContext.currentTime + 1.5
-        );
-
-        osc.stop(
-            audioContext.currentTime + 1.5
-        );
-
-    }else if(
+    if(
         currentInstrument === "strings"
     ){
-
-        gain.gain.exponentialRampToValueAtTime(
-            0.0001,
-            audioContext.currentTime + 3
-        );
-
-        osc.stop(
-            audioContext.currentTime + 3
-        );
-
-    }else{
-
-        gain.gain.exponentialRampToValueAtTime(
-            0.0001,
-            audioContext.currentTime + 2
-        );
-
-        osc.stop(
-            audioContext.currentTime + 2
-        );
+        release = 3;
     }
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.0001,
+        audioContext.currentTime + release
+    );
+
+    osc.stop(
+        audioContext.currentTime + release
+    );
+}
 
 function midiToFrequency(note){
 
