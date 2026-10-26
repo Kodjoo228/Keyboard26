@@ -431,7 +431,6 @@ function playNoteFrequency(freq){
             audioContext.currentTime + 2
         );
     }
-}
 
 function midiToFrequency(note){
 
