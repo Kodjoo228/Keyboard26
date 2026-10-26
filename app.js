@@ -381,44 +381,29 @@ if(presetSelect){
 
 function playNoteFrequency(freq){
 
-    initAudio();
-
-    const osc =
-    audioContext.createOscillator();
-
-    const gain =
-    audioContext.createGain();
-
-    switch(currentInstrument){
-
-        case "piano":
-            osc.type = "triangle";
-        break;
-
-        case "rhodes":
-            osc.type = "sine";
-        break;
-
-        case "organ":
-            osc.type = "square";
-        break;
-
-        case "strings":
-            osc.type = "sawtooth";
-        break;
-
-        case "guitar":
-            osc.type = "triangle";
-        break;
-
-        case "nylon":
-            osc.type = "sine";
-        break;
-
-        default:
-            osc.type = "triangle";
-        break;
+    if(
+        !soundfontInstrument
+    ){
+        return;
     }
+
+    const midiNote =
+
+    Math.round(
+        69 +
+        12 *
+        Math.log2(freq / 440)
+    );
+
+    soundfontInstrument.play(
+        midiNote,
+        audioContext.currentTime,
+        {
+            gain:
+            masterVolume
+        }
+    );
+}
 
     osc.frequency.value = freq;
 
