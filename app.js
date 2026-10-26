@@ -540,3 +540,10 @@ if(volumeSlider){
         }
     );
 }
+
+window.addEventListener(
+    "load",
+    async () => {
+        await loadInstrument();
+    }
+);
