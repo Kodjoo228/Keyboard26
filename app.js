@@ -68,19 +68,20 @@ for(let i = 0; i < 61; i++){
     notes.push(key);
 
     key.addEventListener(
-        "click",
-        function(){
+    "click",
+    function(){
 
-            playNoteFrequency(
-                midiToFrequency(
-                    midi
-                )
-            );
-        }
-    );
+        playNoteFrequency(
+            midiToFrequency(
+                midi
+            )
+        );
+
+    }
+);
+
+notes.push(key);
 }
-
-    notes.push(key);
 
 tempoSlider.addEventListener("input", e => {
 
