@@ -261,7 +261,7 @@ localStorage.getItem("instrument")
 
 ||
 
-"triangle";
+"piano";
 
 let currentPreset =
 
