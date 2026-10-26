@@ -243,6 +243,28 @@ let audioContext = null;
 
 let masterVolume = 0.5;
 
+let currentInstrument =
+"triangle";
+
+const instrumentSelect =
+document.getElementById(
+    "instrument"
+);
+
+if(instrumentSelect){
+
+    instrumentSelect
+    .addEventListener(
+        "change",
+        function(){
+
+            currentInstrument =
+            this.value;
+        }
+    );
+}
+
+
 function initAudio(){
 
     if(!audioContext){
@@ -265,7 +287,8 @@ function playNoteFrequency(freq){
     const gain =
     audioContext.createGain();
 
-    osc.type = "triangle";
+    osc.type =
+    currentInstrument;
 
     osc.frequency.value = freq;
 
