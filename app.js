@@ -28,18 +28,30 @@ for(let i = 0; i < 61; i++){
     const midi =
     36 + i;
 
+    const blackNotes =
+["C#","D#","F#","G#","A#"];
+
+let whiteIndex = 0;
+
+for(let i = 0; i < 61; i++){
+
+    const noteName =
+    noteNames[i % 12];
+
+    const octave =
+    Math.floor(i / 12) + 2;
+
+    const midi =
+    36 + i;
+
     const isBlack =
-    blackNotes.includes(
-        noteName
-    );
+    blackNotes.includes(noteName);
 
     const key =
     document.createElement("div");
 
     key.className =
-    isBlack
-    ? "black"
-    : "white";
+    isBlack ? "black" : "white";
 
     key.innerHTML =
     noteName + octave;
@@ -68,20 +80,17 @@ for(let i = 0; i < 61; i++){
     notes.push(key);
 
     key.addEventListener(
-    "click",
-    function(){
+        "click",
+        function(){
 
-        playNoteFrequency(
-            midiToFrequency(
-                midi
-            )
-        );
+            playNoteFrequency(
+                midiToFrequency(midi)
+            );
 
-    }
-);
-
-notes.push(key);
+        }
+    );
 }
+
 
 tempoSlider.addEventListener("input", e => {
 
