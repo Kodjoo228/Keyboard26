@@ -508,7 +508,6 @@ function playNoteFrequency(freq){
         osc.stop(
             audioContext.currentTime + 2
         );
-    }
 }
 
 function midiToFrequency(note){
