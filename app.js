@@ -221,7 +221,7 @@ function handleMidi(event){
     note - 36;
 
     const key =
-    notes[index];
+    notes[note];
 
     if(
         status === 144 &&
@@ -298,33 +298,154 @@ function toggleFullscreen(){
 }
 
 // ======================
-// AUDIO ENGINE V2
+// REAL PIANO ENGINE V2
 // ======================
 
-let audioContext = null;
+const blackNotes =
+["C#","D#","F#","G#","A#"];
 
-let masterVolume = 0.5;
+let whiteIndex = 0;
 
-const volumeSlider =
-document.getElementById("volume");
+for(let i = 0; i < 61; i++){
 
-const volumeValue =
-document.getElementById("volumeValue");
+    const midiNote =
+    36 + i;
 
-if(volumeSlider){
+    const noteName =
+    noteNames[midiNote % 12];
 
-    volumeSlider.addEventListener(
-        "input",
+    if(
+        blackNotes.includes(
+            noteName
+        )
+    ){
+        continue;
+    }
+
+    const key =
+    document.createElement("div");
+
+    key.className =
+    "white";
+
+    const octave =
+    Math.floor(
+        midiNote / 12
+    ) - 1;
+
+    key.innerHTML =
+    noteName + octave;
+
+    keyboard.appendChild(key);
+
+    notes[midiNote] = key;
+
+    key.addEventListener(
+        "click",
         function(){
 
-            masterVolume =
-            volumeSlider.value / 100;
+            playNoteFrequency(
+                midiToFrequency(
+                    midiNote
+                )
+            );
+        }
+    );
 
-            volumeValue.innerText =
-            volumeSlider.value + "%";
+    whiteIndex++;
+}
+
+
+// ======================
+// NOIR
+// ======================
+
+whiteIndex = 0;
+
+for(let i = 0; i < 61; i++){
+
+    const midiNote =
+    36 + i;
+
+    const noteName =
+    noteNames[midiNote % 12];
+
+    if(
+        !blackNotes.includes(
+            noteName
+        )
+    ){
+        whiteIndex++;
+        continue;
+    }
+
+    const key =
+    document.createElement("div");
+
+    key.className =
+    "black";
+
+    const octave =
+    Math.floor(
+        midiNote / 12
+    ) - 1;
+
+    key.innerHTML =
+    noteName + octave;
+
+    let x = 0;
+
+    switch(noteName){
+
+        case "C#":
+            x =
+            whiteIndex * 95 - 25;
+        break;
+
+        case "D#":
+            x =
+            whiteIndex * 95 - 25;
+        break;
+
+        case "F#":
+            x =
+            whiteIndex * 95 - 25;
+        break;
+
+        case "G#":
+            x =
+            whiteIndex * 95 - 25;
+        break;
+
+        case "A#":
+            x =
+            whiteIndex * 95 - 25;
+        break;
+    }
+
+    key.style.left =
+    x + "px";
+
+    key.style.zIndex =
+    "100";
+
+    keyboard.appendChild(key);
+
+    notes[midiNote] = key;
+
+    key.addEventListener(
+        "click",
+        function(){
+
+            playNoteFrequency(
+                midiToFrequency(
+                    midiNote
+                )
+            );
         }
     );
 }
+
 
 function initAudio(){
 
