@@ -274,6 +274,8 @@ button:hover{
 
 .keyboard{
 
+    position:relative;
+
     scroll-behavior:smooth;
 }
 
