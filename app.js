@@ -27,11 +27,14 @@ for(let i = 0; i < 61; i++){
 
     key.className = "white";
 
-    const octave =
-Math.floor(i / 12) + 2;
+const midiNote =
+36 + i;
+
+const octave =
+Math.floor(midiNote / 12) - 1;
 
 key.innerHTML =
-noteNames[i % 12] + octave;
+noteNames[midiNote % 12] + octave;
 
     
     keyboard.appendChild(key);
@@ -167,7 +170,7 @@ function handleMidi(event){
     event.data;
 
     const index =
-    note % notes.length;
+    note - 36;
 
     const key =
     notes[index];
