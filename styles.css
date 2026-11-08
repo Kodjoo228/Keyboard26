@@ -35,6 +35,8 @@ header{
     align-items:center;
 }
 
+.logoBar h1{ margin:0; }
+
 .signature{
     color:var(--cyan);
     font-size:24px;
@@ -61,6 +63,19 @@ button{
 
 button:hover{ background:var(--cyan); }
 
+select{
+    background:#151515;
+    color:white;
+    border:2px solid var(--violet);
+    border-radius:10px;
+    padding:10px 12px;
+    font-size:15px;
+}
+
+input[type="range"]{ accent-color:var(--violet); }
+
+/* ================= PROGRESSION ================= */
+
 .lesson{ padding:30px; }
 .lesson h2{ font-size:24px; }
 
@@ -70,9 +85,13 @@ button:hover{ background:var(--cyan); }
     padding:14px 26px;
     border-radius:12px;
     margin-right:12px;
+    font-size:20px;
+    font-weight:bold;
+    transition:background .2s, opacity .2s;
 }
 
-.chord.active{ background:var(--green); }
+.chord.done{ opacity:.45; }
+.chord.active{ background:var(--green); color:black; opacity:1; }
 
 /* ================= CLAVIER ================= */
 
@@ -185,6 +204,7 @@ button:hover{ background:var(--cyan); }
 #infoPanel{
     display:flex;
     justify-content:center;
+    align-items:center;
     gap:40px;
     flex-wrap:wrap;
     text-align:center;
@@ -209,12 +229,16 @@ button:hover{ background:var(--cyan); }
     padding:25px;
 }
 
-#history ul{ list-style:none; padding:0; }
+#history h2{ margin-top:0; }
+
+#history ul{ list-style:none; padding:0; margin:0; }
 
 #history li{
     padding:10px;
     border-bottom:1px solid #333;
 }
+
+#history li span{ color:#8a8a8a; margin-right:10px; }
 
 /* ================= MODULES ================= */
 
