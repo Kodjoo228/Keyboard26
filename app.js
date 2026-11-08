@@ -27,21 +27,13 @@ for(let i = 0; i < 61; i++){
 
     key.className = "white";
 
-    const noteName =
-noteNames[i % 12];
-
-const octave =
+    const octave =
 Math.floor(i / 12) + 2;
 
 key.innerHTML =
-noteName + octave;
+noteNames[i % 12] + octave;
 
-if(
-    noteName === "C" &&
-    octave === 4
-){
-    key.classList.add("c4");
-}
+    
     keyboard.appendChild(key);
 
     key.addEventListener(
