@@ -1,3 +1,10 @@
+/*
+Piano Composer Pro ByDélé
+Copyright © 2026 Nicolas
+Tous droits réservés
+*/
+
+
 const keyboard = document.getElementById("keyboard");
 
 const tempoSlider = document.getElementById("tempo");
