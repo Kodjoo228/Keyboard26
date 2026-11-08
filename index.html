@@ -1,262 +1,95 @@
+<!DOCTYPE html>
 <!--
 Piano Composer Pro ByDélé
 Copyright © 2026 Nicolas
 Tous droits réservés
 -->
-
-
-<!DOCTYPE html>
 <html lang="fr">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>
-🎹 Piano Composer Pro ByDélé
-</title>
-
-<link rel="stylesheet"
-href="styles.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎹 Piano Composer Pro ByDélé</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
 <header>
+    <div class="logoBar">
+        <h1>🎹 Piano Composer Pro</h1>
+        <div class="signature">✨ ByDélé</div>
+    </div>
 
-<div class="logoBar">
+    <div class="controls">
+        <button id="connectMidi">Connexion MIDI</button>
+        <button id="fullscreenBtn">🎹 Plein écran</button>
 
-<h1>
-🎹 Piano Composer Pro
-</h1>
+        <label for="volume">Volume</label>
+        <input type="range" id="volume" min="0" max="100" value="50">
+        <span id="volumeValue">50%</span>
 
-<div class="signature">
-✨ ByDélé
-</div>
+        <label for="instrument">Instrument</label>
+        <select id="instrument">
+            <option value="piano">🎹 Piano</option>
+            <option value="rhodes">🎛 Rhodes</option>
+            <option value="organ">🎼 Organ</option>
+            <option value="strings">🎻 Strings</option>
+            <option value="guitar">🎸 Guitar</option>
+            <option value="nylon">🎸 Nylon Guitar</option>
+        </select>
 
-</div>
+        <label for="preset">Preset</label>
+        <select id="preset">
+            <option value="studio">🎛 Studio</option>
+            <option value="concert">🎹 Concert</option>
+            <option value="afrobeat">🌍 Afrobeat</option>
+            <option value="gospel">✨ Gospel</option>
+        </select>
 
-<div class="controls">
-
-<button id="connectMidi">
-Connexion MIDI
-</button>
-
-<button onclick="toggleFullscreen()">
-🎹 Plein écran
-</button>
-
-<label>
-Volume
-</label>
-
-<input
-type="range"
-id="volume"
-min="0"
-max="100"
-value="50">
-
-<span id="volumeValue">
-50%
-</span>
-
-<label>
-Instrument
-</label>
-
-<select id="instrument">
-
-<option value="piano">
-🎹 Piano
-</option>
-
-<option value="rhodes">
-🎛 Rhodes
-</option>
-
-<option value="organ">
-🎼 Organ
-</option>
-
-<option value="strings">
-🎻 Strings
-</option>
-
-<option value="guitar">
-🎸 Guitar
-</option>
-
-<option value="nylon">
-🎸 Nylon Guitar
-</option>
-</select>
-
-<label>
-Preset
-</label>
-
-<select id="preset">
-
-<option value="studio">
-🎛 Studio
-</option>
-
-<option value="concert">
-🎹 Concert
-</option>
-
-<option value="afrobeat">
-🌍 Afrobeat
-</option>
-
-<option value="gospel">
-✨ Gospel
-</option>
-
-</select>
-
-<label>
-Tempo
-</label>
-
-<input
-type="range"
-id="tempo"
-min="20"
-max="300"
-value="120">
-
-<span id="tempoValue">
-120 BPM
-</span>
-
-</div>
-
+        <label for="tempo">Tempo</label>
+        <input type="range" id="tempo" min="20" max="300" value="120">
+        <span id="tempoValue">120 BPM</span>
+    </div>
 </header>
 
 <section class="lesson">
-
-<h2>
-🎼 Progression active
-</h2>
-
-<div id="progression">
-
-<span class="chord active">
-C
-</span>
-
-<span class="chord">
-G
-</span>
-
-<span class="chord">
-Am
-</span>
-
-<span class="chord">
-F
-</span>
-
-</div>
-
+    <h2>🎼 Progression active</h2>
+    <div id="progression"></div>
 </section>
 
 <section id="dashboard">
-
-<div class="moduleCard">
-🎹 Accord Academy
-</div>
-
-<div class="moduleCard">
-🎼 Scale Master
-</div>
-
-<div class="moduleCard">
-🔥 Arpeggio Hero
-</div>
-
-<div class="moduleCard">
-👂 Ear Training
-</div>
-
-<div class="moduleCard">
-🎵 Songs Studio
-</div>
-
-<div class="moduleCard">
-🌍 Afrobeat Universe
-</div>
-
+    <div class="moduleCard">🎹 Accord Academy</div>
+    <div class="moduleCard">🎼 Scale Master</div>
+    <div class="moduleCard">🔥 Arpeggio Hero</div>
+    <div class="moduleCard">👂 Ear Training</div>
+    <div class="moduleCard">🎵 Songs Studio</div>
+    <div class="moduleCard">🌍 Afrobeat Universe</div>
 </section>
 
 <section id="synthesiaArea">
-
-<h2>
-🎹 Synthesia ByDélé
-</h2>
-
-<div id="synthesiaScreen">
-
-<div class="comingSoon">
-Notes descendantes à venir
-</div>
-
-</div>
-
+    <h2>🎹 Synthesia ByDélé</h2>
+    <div id="synthesiaScreen">
+        <div class="comingSoon">Notes descendantes à venir</div>
+    </div>
 </section>
 
-<section
-class="keyboard"
-id="keyboard">
-</section>
+<section class="keyboard" id="keyboard"></section>
 
-<div id="midiStatus">
-
-Aucun périphérique MIDI connecté
-
-</div>
+<div id="midiStatus">Aucun périphérique MIDI connecté</div>
 
 <div id="infoPanel">
-
-<h2 id="currentNote">
-🎹 Note : -
-</h2>
-
-<h2 id="detectedChord">
-🎼 Accord : -
-</h2>
-
-<h2 id="suggestedScale">
-🎵 Gamme : -
-</h2>
-
-<h3 id="noteCounter">
-Notes jouées : 0
-</h3>
-
+    <h2 id="currentNote">🎹 Note : -</h2>
+    <h2 id="detectedChord">🎼 Accord : -</h2>
+    <h2 id="suggestedScale">🎵 Gamme : -</h2>
+    <h3 id="noteCounter">Notes jouées : 0</h3>
 </div>
 
 <div id="history">
-
-<h2>
-Historique
-</h2>
-
-<ul id="historyList">
-
-</ul>
-
+    <h2>Historique</h2>
+    <ul id="historyList"></ul>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/soundfont-player/0.15.7/soundfont-player.min.js"></script>
-<script src="app.js"></script>
+<script src="app.js" defer></script>
 
 </body>
-
 </html>
