@@ -156,6 +156,12 @@ button:hover{
         0 10px 18px rgba(0,0,0,.35);
 }
 
+    .c4{
+
+    border-top:6px solid #00D5FF;
+
+}
+
 .white::before{
 
     content:"";
