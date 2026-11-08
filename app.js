@@ -27,22 +27,7 @@ for(let i = 0; i < 61; i++){
     const key =
     document.createElement("div");
 
-    const noteName =
-noteNames[midiNote % 12];
-
-const isBlack =
-[
-    "C#",
-    "D#",
-    "F#",
-    "G#",
-    "A#"
-].includes(noteName);
-
-key.className =
-isBlack
-? "black"
-: "white";
+    key.className = "white";
 
 const midiNote =
 36 + i;
