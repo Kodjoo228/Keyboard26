@@ -52,22 +52,48 @@ for(let i = 0; i < 61; i++){
     key.innerHTML =
     noteName + octave;
 
+
+    
     if(isBlack){
 
-        key.style.left =
-        (
-            whiteKeyIndex * 95
-            - 22
-        ) + "px";
+    let offset = -25;
 
-        key.style.zIndex =
-        "100";
-
-    }else{
-
-        whiteKeyIndex++;
+    if(
+        noteName === "C#" ||
+        noteName === "F#"
+    ){
+        offset = -30;
     }
 
+    if(
+        noteName === "D#" ||
+        noteName === "A#"
+    ){
+        offset = -20;
+    }
+
+    if(
+        noteName === "G#"
+    ){
+        offset = -25;
+    }
+
+    key.style.left =
+    (
+        (whiteKeyIndex * 95)
+        + offset
+    ) + "px";
+
+    key.style.zIndex =
+    "100";
+
+}else{
+
+    whiteKeyIndex++;
+}
+
+
+    
     keyboard.appendChild(key);
 
     key.addEventListener(
