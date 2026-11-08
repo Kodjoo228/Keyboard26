@@ -4,7 +4,7 @@ console.log("FEATURE BRANCH");
 Piano Composer Pro ByDélé
 Copyright © 2026 Nicolas
 Tous droits réservés
-*/
+*/ 
 
 
 const keyboard = document.getElementById("keyboard");
