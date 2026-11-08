@@ -221,7 +221,7 @@ function handleMidi(event){
     note - 36;
 
     const key =
-    notes[note];
+    notes[index];
 
     if(
         status === 144 &&
@@ -298,154 +298,33 @@ function toggleFullscreen(){
 }
 
 // ======================
-// REAL PIANO ENGINE V2
+// AUDIO ENGINE V2
 // ======================
 
-const blackNotes =
-["C#","D#","F#","G#","A#"];
+let audioContext = null;
 
-let whiteIndex = 0;
+let masterVolume = 0.5;
 
-for(let i = 0; i < 61; i++){
+const volumeSlider =
+document.getElementById("volume");
 
-    const midiNote =
-    36 + i;
+const volumeValue =
+document.getElementById("volumeValue");
 
-    const noteName =
-    noteNames[midiNote % 12];
+if(volumeSlider){
 
-    if(
-        blackNotes.includes(
-            noteName
-        )
-    ){
-        continue;
-    }
-
-    const key =
-    document.createElement("div");
-
-    key.className =
-    "white";
-
-    const octave =
-    Math.floor(
-        midiNote / 12
-    ) - 1;
-
-    key.innerHTML =
-    noteName + octave;
-
-    keyboard.appendChild(key);
-
-    notes[midiNote] = key;
-
-    key.addEventListener(
-        "click",
+    volumeSlider.addEventListener(
+        "input",
         function(){
 
-            playNoteFrequency(
-                midiToFrequency(
-                    midiNote
-                )
-            );
-        }
-    );
+            masterVolume =
+            volumeSlider.value / 100;
 
-    whiteIndex++;
-}
-
-
-// ======================
-// NOIR
-// ======================
-
-whiteIndex = 0;
-
-for(let i = 0; i < 61; i++){
-
-    const midiNote =
-    36 + i;
-
-    const noteName =
-    noteNames[midiNote % 12];
-
-    if(
-        !blackNotes.includes(
-            noteName
-        )
-    ){
-        whiteIndex++;
-        continue;
-    }
-
-    const key =
-    document.createElement("div");
-
-    key.className =
-    "black";
-
-    const octave =
-    Math.floor(
-        midiNote / 12
-    ) - 1;
-
-    key.innerHTML =
-    noteName + octave;
-
-    let x = 0;
-
-    switch(noteName){
-
-        case "C#":
-            x =
-            whiteIndex * 95 - 25;
-        break;
-
-        case "D#":
-            x =
-            whiteIndex * 95 - 25;
-        break;
-
-        case "F#":
-            x =
-            whiteIndex * 95 - 25;
-        break;
-
-        case "G#":
-            x =
-            whiteIndex * 95 - 25;
-        break;
-
-        case "A#":
-            x =
-            whiteIndex * 95 - 25;
-        break;
-    }
-
-    key.style.left =
-    x + "px";
-
-    key.style.zIndex =
-    "100";
-
-    keyboard.appendChild(key);
-
-    notes[midiNote] = key;
-
-    key.addEventListener(
-        "click",
-        function(){
-
-            playNoteFrequency(
-                midiToFrequency(
-                    midiNote
-                )
-            );
+            volumeValue.innerText =
+            volumeSlider.value + "%";
         }
     );
 }
-
 
 function initAudio(){
 
