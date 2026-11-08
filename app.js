@@ -56,36 +56,21 @@ for(let i = 0; i < 61; i++){
     
     if(isBlack){
 
-    let offset = -25;
-
-    if(
-        noteName === "C#" ||
-        noteName === "F#"
-    ){
-        offset = -30;
-    }
-
-    if(
-        noteName === "D#" ||
-        noteName === "A#"
-    ){
-        offset = -20;
-    }
-
-    if(
-        noteName === "G#"
-    ){
-        offset = -25;
-    }
+    const positions = {
+        "C#": -47,
+        "D#": -15,
+        "F#": -47,
+        "G#": -31,
+        "A#": -15
+    };
 
     key.style.left =
     (
-        (whiteKeyIndex * 95)
-        + offset
+        whiteKeyIndex * 95 +
+        positions[noteName]
     ) + "px";
 
-    key.style.zIndex =
-    "100";
+    key.style.zIndex = "100";
 
 }else{
 
