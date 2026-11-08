@@ -19,9 +19,11 @@ const noteNames = [
 ];
 
 // Construction du clavier simple
+
 for(let i = 0; i < 61; i++){
 
-    const key = document.createElement("div");
+    const key =
+    document.createElement("div");
 
     key.className = "white";
 
@@ -32,6 +34,18 @@ for(let i = 0; i < 61; i++){
     noteNames[i % 12] + octave;
 
     keyboard.appendChild(key);
+
+    key.addEventListener(
+        "click",
+        function(){
+
+            playNoteFrequency(
+                midiToFrequency(
+                    36 + i
+                )
+            );
+        }
+    );
 
     notes.push(key);
 }
@@ -157,10 +171,16 @@ function handleMidi(event){
     const key =
     notes[index];
 
-    if(status === 144 &&
-       velocity > 0){
+    if(
+        status === 144 &&
+        velocity > 0
+    ){
 
         pressedNotes.add(note);
+
+        playNoteFrequency(
+            midiToFrequency(note)
+        );
 
         if(key){
 
@@ -205,6 +225,27 @@ function handleMidi(event){
     }
 }
 
+    if(
+        status === 128 ||
+        (
+            status === 144 &&
+            velocity === 0
+        )
+    ){
+
+        pressedNotes.delete(note);
+
+        if(key){
+
+            key.classList.remove(
+                "active"
+            );
+        }
+
+        updateChord();
+    }
+}
+
 document
 .getElementById("connectMidi")
 .addEventListener(
@@ -223,4 +264,88 @@ function toggleFullscreen(){
 
         document.exitFullscreen();
     }
+}
+
+// ======================
+// AUDIO ENGINE V2
+// ======================
+
+let audioContext = null;
+
+let masterVolume = 0.5;
+
+const volumeSlider =
+document.getElementById("volume");
+
+const volumeValue =
+document.getElementById("volumeValue");
+
+if(volumeSlider){
+
+    volumeSlider.addEventListener(
+        "input",
+        function(){
+
+            masterVolume =
+            volumeSlider.value / 100;
+
+            volumeValue.innerText =
+            volumeSlider.value + "%";
+        }
+    );
+}
+
+function initAudio(){
+
+    if(!audioContext){
+
+        audioContext = new(
+            window.AudioContext ||
+            window.webkitAudioContext
+        )();
+    }
+}
+
+function midiToFrequency(note){
+
+    return 440 *
+    Math.pow(
+        2,
+        (note - 69) / 12
+    );
+}
+
+function playNoteFrequency(freq){
+
+    initAudio();
+
+    const osc =
+    audioContext.createOscillator();
+
+    const gain =
+    audioContext.createGain();
+
+    osc.type = "triangle";
+
+    osc.frequency.value = freq;
+
+    gain.gain.value =
+    masterVolume;
+
+    osc.connect(gain);
+
+    gain.connect(
+        audioContext.destination
+    );
+
+    osc.start();
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.0001,
+        audioContext.currentTime + 1
+    );
+
+    osc.stop(
+        audioContext.currentTime + 1
+    );
 }
