@@ -27,7 +27,22 @@ for(let i = 0; i < 61; i++){
     const key =
     document.createElement("div");
 
-    key.className = "white";
+    const noteName =
+noteNames[midiNote % 12];
+
+const isBlack =
+[
+    "C#",
+    "D#",
+    "F#",
+    "G#",
+    "A#"
+].includes(noteName);
+
+key.className =
+isBlack
+? "black"
+: "white";
 
 const midiNote =
 36 + i;
@@ -36,7 +51,7 @@ const octave =
 Math.floor(midiNote / 12) - 1;
 
 key.innerHTML =
-noteNames[midiNote % 12] + octave;
+noteName + octave;
 
     
     keyboard.appendChild(key);
