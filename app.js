@@ -3,7 +3,7 @@ console.log("FEATURE BRANCH");
 /*
 Piano Composer Pro ByDélé
 Copyright © 2026 Nicolas
-Tous droits réservés
+Tous droits réservés 
 */ 
 
 
