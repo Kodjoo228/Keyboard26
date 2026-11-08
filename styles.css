@@ -413,9 +413,11 @@ button:hover{
 
 .black{
 
-    width:44px;
+    position:absolute;
 
-    height:280px;
+    width:50px;
+
+    height:320px;
 
     background:
     linear-gradient(
@@ -432,25 +434,16 @@ button:hover{
 
     align-items:flex-end;
 
-    padding-bottom:15px;
-
-    box-sizing:border-box;
+    padding-bottom:10px;
 
     border-radius:
     0 0 10px 10px;
 
-    box-shadow:
+    box-sizing:border-box;
 
-        inset 0 2px 4px
-        rgba(255,255,255,.1),
-
-        0 5px 10px
-        rgba(0,0,0,.8);
-
-    position:absolute;
-
-    transition:.1s;
+    z-index:100;
 }
+
 
 .black.active{
 
