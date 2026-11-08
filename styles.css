@@ -466,3 +466,12 @@ button:hover{
         0 0 20px
         #7C4DFF;
 }
+
+.c4{
+
+    border-top:6px solid #00D5FF;
+
+    box-shadow:
+    0 0 20px #00D5FF;
+
+}
