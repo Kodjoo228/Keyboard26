@@ -7,7 +7,7 @@ Tous droits réservés
 
 const keyboard = document.getElementById("keyboard");
 
-const tempoSlider = document.getElementById("tempo");
+const tempoSlider = document.getElementById("tempo"); 
 const tempoValue = document.getElementById("tempoValue");
 
 const notes = []; 
