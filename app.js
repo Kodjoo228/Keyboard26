@@ -57,13 +57,12 @@ for(let i = 0; i < 61; i++){
     if(isBlack){
 
     const positions = {
-        "C#": -47,
-        "D#": -15,
-        "F#": -47,
-        "G#": -31,
-        "A#": -15
-    };
-
+    "C#": -25,
+    "D#": -10,
+    "F#": -25,
+    "G#": -18,
+    "A#": -10
+};
     key.style.left =
     (
         whiteKeyIndex * 95 +
