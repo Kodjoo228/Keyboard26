@@ -20,14 +20,17 @@ const noteNames = [
 "F#","G","G#","A","A#","B"
 ];
 
-// Construction du clavier simple
+// Construction du clavier noir/blanc
+
+const blackNotes =
+["C#","D#","F#","G#","A#"];
+
+let whiteKeyIndex = 0;
 
 for(let i = 0; i < 61; i++){
 
     const key =
     document.createElement("div");
-
-    key.className = "white";
 
     const midiNote =
     36 + i;
@@ -38,8 +41,32 @@ for(let i = 0; i < 61; i++){
     const octave =
     Math.floor(midiNote / 12) - 1;
 
+    const isBlack =
+    blackNotes.includes(noteName);
+
+    key.className =
+    isBlack
+    ? "black"
+    : "white";
+
     key.innerHTML =
     noteName + octave;
+
+    if(isBlack){
+
+        key.style.left =
+        (
+            whiteKeyIndex * 95
+            - 22
+        ) + "px";
+
+        key.style.zIndex =
+        "100";
+
+    }else{
+
+        whiteKeyIndex++;
+    }
 
     keyboard.appendChild(key);
 
@@ -57,7 +84,6 @@ for(let i = 0; i < 61; i++){
 
     notes.push(key);
 }
-
 
 tempoSlider.addEventListener("input", e => {
 
