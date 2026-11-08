@@ -225,48 +225,6 @@ function handleMidi(event){
     }
 }
 
-    if(
-        status === 128 ||
-        (
-            status === 144 &&
-            velocity === 0
-        )
-    ){
-
-        pressedNotes.delete(note);
-
-        if(key){
-
-            key.classList.remove(
-                "active"
-            );
-        }
-
-        updateChord();
-    }
-}
-
-    if(
-        status === 128 ||
-        (
-            status === 144 &&
-            velocity === 0
-        )
-    ){
-
-        pressedNotes.delete(note);
-
-        if(key){
-
-            key.classList.remove(
-                "active"
-            );
-        }
-
-        updateChord();
-    }
-}
-
 document
 .getElementById("connectMidi")
 .addEventListener(
