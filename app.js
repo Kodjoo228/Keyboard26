@@ -171,6 +171,12 @@ function handleMidi(event){
     const [status,note,velocity] =
     event.data;
 
+    console.log(
+    "MIDI NOTE =",
+    note
+);
+
+
     const index =
     note - 36;
 
