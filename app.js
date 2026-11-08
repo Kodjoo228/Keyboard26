@@ -29,16 +29,18 @@ for(let i = 0; i < 61; i++){
 
     key.className = "white";
 
-const midiNote =
-36 + i;
+    const midiNote =
+    36 + i;
 
-const octave =
-Math.floor(midiNote / 12) - 1;
+    const noteName =
+    noteNames[midiNote % 12];
 
-key.innerHTML =
-noteName + octave;
+    const octave =
+    Math.floor(midiNote / 12) - 1;
 
-    
+    key.innerHTML =
+    noteName + octave;
+
     keyboard.appendChild(key);
 
     key.addEventListener(
@@ -47,7 +49,7 @@ noteName + octave;
 
             playNoteFrequency(
                 midiToFrequency(
-                    36 + i
+                    midiNote
                 )
             );
         }
@@ -55,6 +57,7 @@ noteName + octave;
 
     notes.push(key);
 }
+
 
 tempoSlider.addEventListener("input", e => {
 
