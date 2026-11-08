@@ -4,26 +4,29 @@ Copyright © 2026 Nicolas
 Tous droits réservés
 */
 
- 
+:root{
+    --white-w:95px;
+    --white-h:520px;
+    --black-w:56px;
+    --black-h:320px;
+    --violet:#8B5CF6;
+    --cyan:#00D5FF;
+    --green:#00E676;
+}
 
+*{ box-sizing:border-box; }
 
 body{
     margin:0;
-    background:
-    radial-gradient(
-        circle at center,
-        #071537 0%,
-        #050b18 50%,
-        #000000 100%
-    );
+    background:radial-gradient(circle at center,#071537 0%,#050b18 50%,#000000 100%);
     color:white;
-    font-family:Segoe UI,sans-serif;
+    font-family:"Segoe UI",sans-serif;
 }
 
 header{
     background:#0a0f16;
     padding:25px;
-    border-bottom:2px solid #8B5CF6;
+    border-bottom:2px solid var(--violet);
 }
 
 .logoBar{
@@ -33,7 +36,7 @@ header{
 }
 
 .signature{
-    color:#00D5FF;
+    color:var(--cyan);
     font-size:24px;
     font-weight:700;
 }
@@ -56,17 +59,10 @@ button{
     cursor:pointer;
 }
 
-button:hover{
-    background:#00D5FF;
-}
+button:hover{ background:var(--cyan); }
 
-.lesson{
-    padding:30px;
-}
-
-.lesson h2{
-    font-size:24px;
-}
+.lesson{ padding:30px; }
+.lesson h2{ font-size:24px; }
 
 .chord{
     display:inline-block;
@@ -76,397 +72,207 @@ button:hover{
     margin-right:12px;
 }
 
-.active{
-    background:#00E676;
-}
+.chord.active{ background:var(--green); }
+
+/* ================= CLAVIER ================= */
 
 .keyboard{
-
-    position:relative;
-
-    display:flex;
-
-    align-items:flex-end;
-
     overflow-x:auto;
-
     overflow-y:hidden;
-
-    height:620px;
-
     padding:40px 20px 20px 20px;
-
     background:#020202;
+    border-top:3px solid var(--violet);
+    border-bottom:3px solid var(--violet);
+    box-shadow:inset 0 0 80px rgba(0,0,0,.9);
+    scroll-behavior:smooth;
+    user-select:none;
+    -webkit-user-select:none;
+    touch-action:pan-x;
+}
 
-    border-top:3px solid #8B5CF6;
-
-    border-bottom:3px solid #8B5CF6;
-
-    box-shadow:
-    inset 0 0 80px rgba(0,0,0,.9);
+/* Conteneur interne : référence de position des touches noires */
+.keys{
+    position:relative;
+    display:flex;
+    width:max-content;
+    height:var(--white-h);
+    margin:0 auto;
 }
 
 .white{
-
-    min-width:95px;
-
-    height:520px;
-
+    flex:0 0 var(--white-w);
+    width:var(--white-w);
+    height:var(--white-h);
     position:relative;
-
-    background:
-    linear-gradient(
-        to bottom,
-        #ffffff,
-        #f4f4f4,
-        #e0e0e0
-    );
-
+    background:linear-gradient(to bottom,#ffffff,#f4f4f4,#e0e0e0);
     border:1px solid #bbbbbb;
-
-    border-radius:
-    0 0 20px 20px;
-
+    border-radius:0 0 20px 20px;
     display:flex;
-
     justify-content:center;
-
     align-items:flex-end;
-
     padding-bottom:18px;
-
     color:black;
-
     font-weight:bold;
-
     font-size:18px;
-
-    box-sizing:border-box;
-
-    transition:
-    transform .08s ease,
-    box-shadow .15s ease;
-
+    cursor:pointer;
+    transition:transform .08s ease, box-shadow .15s ease;
     box-shadow:
-
         inset 0 3px 4px rgba(255,255,255,.95),
-
         inset 0 -5px 5px rgba(0,0,0,.12),
-
         0 10px 18px rgba(0,0,0,.35);
 }
 
-    .c4{
-
-    border-top:6px solid #00D5FF;
-
-}
-
 .white::before{
-
     content:"";
-
     position:absolute;
-
-    top:0;
-
-    left:0;
-
-    right:0;
-
+    top:0; left:0; right:0;
     height:38%;
-
-    background:
-
-    linear-gradient(
-        to bottom,
-        rgba(255,255,255,.7),
-        rgba(255,255,255,0)
-    );
-
-    border-radius:
-    0 0 35px 35px;
+    background:linear-gradient(to bottom,rgba(255,255,255,.7),rgba(255,255,255,0));
+    border-radius:0 0 35px 35px;
+    pointer-events:none;
 }
 
-.white:hover{
-
-    transform:
-    translateY(-2px);
-}
+.white:hover{ transform:translateY(-2px); }
 
 .white.active{
-
-    background:
-    linear-gradient(
-        to bottom,
-        #99ffc5,
-        #00E676
-    );
-
-    transform:
-    translateY(6px);
-
+    background:linear-gradient(to bottom,#99ffc5,var(--green));
+    transform:translateY(6px);
     box-shadow:
-
-        0 0 16px #00E676,
-
-        0 0 35px #00E676,
-
+        0 0 16px var(--green),
+        0 0 35px var(--green),
         inset 0 2px 5px rgba(255,255,255,.95);
 }
 
+.black{
+    position:absolute;
+    top:0;
+    width:var(--black-w);
+    height:var(--black-h);
+    background:linear-gradient(to bottom,#444,#000);
+    color:white;
+    font-size:11px;
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    padding-bottom:10px;
+    border-radius:0 0 10px 10px;
+    cursor:pointer;
+    z-index:100;
+    box-shadow:0 6px 10px rgba(0,0,0,.6), inset 0 -4px 4px rgba(255,255,255,.12);
+    transition:transform .08s ease;
+}
+
+.black.active{
+    background:linear-gradient(to bottom,#B388FF,#7C4DFF);
+    box-shadow:0 0 20px #7C4DFF;
+    transform:translateY(4px);
+}
+
+/* Repère Do central (C4) */
+.c4{
+    border-top:6px solid var(--cyan);
+    box-shadow:0 0 20px var(--cyan);
+}
+
+/* ================= INFOS ================= */
+
 #midiStatus{
-
     text-align:center;
-
     padding:25px;
-
     font-size:24px;
 }
 
 #infoPanel{
-
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
     text-align:center;
-
     padding:25px;
 }
 
 #infoPanel h2{
-
-    color:#00D5FF;
-
-    font-size:42px;
-
+    color:var(--cyan);
+    font-size:28px;
     margin:20px;
 }
 
-#infoPanel h3{
-
-    font-size:30px;
-}
+#infoPanel h3{ font-size:22px; }
 
 #history{
-
     width:92%;
-
+    max-height:220px;
+    overflow-y:auto;
     margin:30px auto;
-
     background:#101010;
-
     border-radius:15px;
-
     padding:25px;
 }
 
-#history ul{
-
-    list-style:none;
-
-    padding:0;
-}
+#history ul{ list-style:none; padding:0; }
 
 #history li{
-
     padding:10px;
-
     border-bottom:1px solid #333;
 }
 
-.keyboard{
-
-    position:relative;
-
-    scroll-behavior:smooth;
-}
-
-#infoPanel{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:40px;
-
-    flex-wrap:wrap;
-}
-
-#infoPanel h2{
-
-    font-size:28px !important;
-}
-
-#infoPanel h3{
-
-    font-size:22px !important;
-}
-
-#history{
-
-    max-height:220px;
-
-    overflow-y:auto;
-}
+/* ================= MODULES ================= */
 
 #dashboard{
-
     display:flex;
-
     flex-wrap:wrap;
-
     justify-content:center;
-
     gap:20px;
-
     margin:30px 0;
 }
 
 .moduleCard{
-
     width:240px;
-
     background:#151515;
-
-    border:2px solid #8B5CF6;
-
+    border:2px solid var(--violet);
     border-radius:18px;
-
     padding:25px;
-
     text-align:center;
-
     font-size:22px;
-
     font-weight:bold;
-
     cursor:pointer;
-
     transition:.25s;
 }
 
 .moduleCard:hover{
-
     transform:translateY(-6px);
-
-    border-color:#00D5FF;
-
-    box-shadow:
-    0 0 18px #00D5FF;
+    border-color:var(--cyan);
+    box-shadow:0 0 18px var(--cyan);
 }
 
 #synthesiaArea{
-
     width:95%;
-
-    margin:auto;
-
-    margin-top:20px;
-
+    margin:20px auto 0;
     background:#111;
-
-    border:2px solid #8B5CF6;
-
+    border:2px solid var(--violet);
     border-radius:18px;
-
     padding:20px;
 }
 
 #synthesiaArea h2{
-
     text-align:center;
-
-    color:#00D5FF;
+    color:var(--cyan);
 }
 
 #synthesiaScreen{
-
     height:240px;
-
-    background:
-    linear-gradient(
-        to bottom,
-        #060606,
-        #151515
-    );
-
+    background:linear-gradient(to bottom,#060606,#151515);
     border-radius:12px;
-
     position:relative;
-
     overflow:hidden;
 }
 
 .comingSoon{
-
     position:absolute;
-
     left:50%;
-
     top:50%;
-
-    transform:
-    translate(-50%,-50%);
-
+    transform:translate(-50%,-50%);
     font-size:28px;
-
-    color:#8B5CF6;
-
+    color:var(--violet);
     opacity:.8;
-}
-
-.black{
-
-    position:absolute;
-
-    width:50px;
-
-    height:320px;
-
-    background:
-    linear-gradient(
-        to bottom,
-        #444,
-        #000
-    );
-
-    color:white;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:flex-end;
-
-    padding-bottom:10px;
-
-    border-radius:
-    0 0 10px 10px;
-
-    box-sizing:border-box;
-
-    z-index:100;
-}
-
-
-.black.active{
-
-    background:
-    linear-gradient(
-        to bottom,
-        #B388FF,
-        #7C4DFF
-    );
-
-    box-shadow:
-
-        0 0 20px
-        #7C4DFF;
-}
-
-.c4{
-
-    border-top:6px solid #00D5FF;
-
-    box-shadow:
-    0 0 20px #00D5FF;
-
 }
